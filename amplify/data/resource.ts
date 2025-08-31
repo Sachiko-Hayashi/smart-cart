@@ -12,6 +12,24 @@ const schema = a.schema({
       content: a.string(),
     })
     .authorization((allow) => [allow.publicApiKey()]),
+    Products: a
+    .model({
+      id: a.id(),
+      name: a.string().required(), 
+      imageUrl: a.string(),
+      price: a.float(),
+      createdAt: a.timestamp(),
+    })
+    .authorization((allow) => [allow.publicApiKey()]),
+    //.authorization((allow) => [allow.authenticated()]), // 認証ユーザのみ
+    ImageLabels: a
+    .model({id:a.id(), 
+      product_id : a.id(),
+      label:a.string(),
+      confident:a.float(),
+      detected_at:a.timestamp()})
+      .authorization((allow) => [allow.publicApiKey()]),
+
 });
 
 export type Schema = ClientSchema<typeof schema>;

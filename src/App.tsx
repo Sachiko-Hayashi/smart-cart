@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
-
+import { UploadImage} from "../test/s3test"
 const client = generateClient<Schema>();
 
 function App() {
@@ -19,6 +19,7 @@ function App() {
 
   return (
     <main>
+      <UploadImage />
       <h1>My todos</h1>
       <button onClick={createTodo}>+ new</button>
       <ul>
